@@ -1,9 +1,20 @@
+from genericpath import isfile
 import sys
-
+import os
+import shutil
 
 def main():
     # Uncomment this block to pass the first stage
+        
+    def IsExecutable(command):
+        paths = os.environ.get('PATH','').split(os.pathsep)
     
+        for dir in paths:
+            ex = os.path.join(dir, command)
+            if os.path.isfile(ex) and os.access(ex, os.X_OK):
+                return ex
+        return None
+            
     while(True):
         sys.stdout.write("$ ")
 
@@ -14,15 +25,23 @@ def main():
         command_list = command.split()
         #checking the shell commads
         if command == 'exit 0':
+            # exit the terminal
             break
         elif command_list[0] == 'echo':
+            # print the statement
             print(command[5:])
             continue
         elif command_list[0] == 'type':
+            # check the command
             if command_list[1] in shell_builtin:
                 print(f'{command_list[1]} is a shell builtin')
             else:
-                print(f'{command_list[1]}: not found')
+                # check wheather the command is executable path
+                path = IsExecutable(command_list[1])
+                if path:
+                    print(f'{command_list[1]} is {path}')
+                else:
+                    print(f'{command_list[1]}: not found')
             continue
         else:
             print(f'{command}: command not found')
