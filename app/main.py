@@ -20,7 +20,7 @@ def main():
         """To execute the command"""
         path = IsExecutable(command_list[0])
         if path:
-            result = subprocess.run([path] + command_list[1:], capture_output=True, text=True)     
+            result = subprocess.run(command_list[0] + command_list[1:], capture_output=True, text=True)     
             print(result.stdout)
         else:
             print(f'{command}: command not found')
