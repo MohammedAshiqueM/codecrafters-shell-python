@@ -2,6 +2,11 @@ import os
 import subprocess
 
 
+def print_echo(command_list):
+    for i in command_list[1:]:
+        print(i,end=' ')
+    print()
+        
 def IsExecutable(command):
         """To check executable file in PATH"""
         paths = os.environ.get('PATH','').split(os.pathsep)
