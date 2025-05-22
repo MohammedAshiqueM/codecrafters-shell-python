@@ -23,7 +23,7 @@ def main():
             result = subprocess.run([command_list[0]] + command_list[1:], capture_output=True, text=True)     
             print(result.stdout)
         else:
-            print(f'{command}: command not found')
+            print(f'{command_list[0]}: command not found')
             
     while(True):
         sys.stdout.write("$ ")
