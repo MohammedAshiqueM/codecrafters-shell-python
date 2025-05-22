@@ -21,9 +21,8 @@ def main():
         path = IsExecutable(command_list[0])
         if path:
             result = subprocess.run([command_list[0]] + command_list[1:], capture_output=True, text=True)     
-            print(result.stdout)
-        else:
-            print(f'{command_list[0]}: command not found')
+            return(result.stdout)
+        return None
             
     while(True):
         sys.stdout.write("$ ")
@@ -54,6 +53,11 @@ def main():
                     print(f'{command_list[1]}: not found')
             continue
         else:
-            Execute(command_list)
+            result = Execute(command_list)
+            if result:
+                print(result)
+            else:
+                print(f'{command_list[0]}: command not found')
+                
 if __name__ == "__main__":
     main()
