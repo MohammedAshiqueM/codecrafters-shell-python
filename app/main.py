@@ -1,7 +1,7 @@
 from genericpath import isfile
 import sys
 import shlex
-from utils import IsExecutable, Execute, read_file
+from .utils import IsExecutable, Execute, read_file
 
 def main():
         
