@@ -1,12 +1,13 @@
 from genericpath import isfile
 import sys
 import os
-import shutil
+import subprocess
 
 def main():
     # Uncomment this block to pass the first stage
         
     def IsExecutable(command):
+        """To check executable file in PATH"""
         paths = os.environ.get('PATH','').split(os.pathsep)
     
         for dir in paths:
@@ -14,6 +15,15 @@ def main():
             if os.path.isfile(ex) and os.access(ex, os.X_OK):
                 return ex
         return None
+    
+    def Execute(command_list):
+        """To execute the command"""
+        path = IsExecutable(command_list[0])
+        if path:
+            result = subprocess.run([path] + command_list[1:], capture_output=True, text=True)     
+            print(result)
+        else:
+            print(f'{command}: command not found')
             
     while(True):
         sys.stdout.write("$ ")
@@ -44,7 +54,6 @@ def main():
                     print(f'{command_list[1]}: not found')
             continue
         else:
-            print(f'{command}: command not found')
-
+            Execute(command_list)
 if __name__ == "__main__":
     main()
