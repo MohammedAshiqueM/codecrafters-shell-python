@@ -55,7 +55,7 @@ def main():
         else:
             result = Execute(command_list)
             if result:
-                print(result)
+                print(result,end='')
             else:
                 print(f'{command_list[0]}: command not found')
                 
