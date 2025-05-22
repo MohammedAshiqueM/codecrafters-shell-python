@@ -20,7 +20,7 @@ def main():
             break
         elif command_list[0] == 'echo':
             # print the statement
-            print_echo(command_list)
+            print_echo(command_list[1:])
             continue
         elif command_list[0] == 'type':
             # check the command
@@ -35,7 +35,7 @@ def main():
                     print(f'{command_list[1]}: not found')
             continue
         elif command_list[0] == 'cat':
-            read_file(command_list[1])
+            print(read_file(command_list[1:]))
         else:
             result = Execute(command_list)
             if result:

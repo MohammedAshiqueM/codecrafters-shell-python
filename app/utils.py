@@ -1,9 +1,8 @@
 import os
 import subprocess
 
-
 def print_echo(command_list):
-    for i in command_list[1:]:
+    for i in command_list:
         print(i,end=' ')
     print()
         
@@ -25,10 +24,13 @@ def Execute(command_list):
         return(result.stdout)
     return None
 
-def read_file(path):
+def read_file(command_list):
     try:
-        with open(path, 'r') as f:
-            print(f.read())
+        res = ''
+        for i in command_list:
+            with open(i, 'r') as f:
+                res+=f.read()
+        return res
     except:
-        print(f'cannot find path {path}')
+        print(f'cannot find path {i}')
         
