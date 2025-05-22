@@ -35,7 +35,9 @@ def main():
                     print(f'{command_list[1]}: not found')
             continue
         elif command_list[0] == 'cat':
-            print(read_file(command_list[1:]))
+            res = read_file(command_list[1:])
+            if res:
+                print(res)
         else:
             result = Execute(command_list)
             if result:

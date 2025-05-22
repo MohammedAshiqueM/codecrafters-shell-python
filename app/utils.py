@@ -30,7 +30,7 @@ def read_file(command_list):
         for i in command_list:
             with open(i, 'r') as f:
                 res+=f.read()
-        return res
+        return res.strip()
     except:
         print(f'cannot find path {i}')
         
