@@ -1,7 +1,7 @@
 from genericpath import isfile
 import sys
 import shlex
-from .utils import IsExecutable, Execute, read_file
+from app.utils import IsExecutable, Execute, read_file
 
 def main():
         
@@ -20,7 +20,7 @@ def main():
             break
         elif command_list[0] == 'echo':
             # print the statement
-            print(command[5:].strip('"'))
+            print(command[5:].strip("'\""))
             continue
         elif command_list[0] == 'type':
             # check the command
